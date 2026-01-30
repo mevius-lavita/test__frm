@@ -1,0 +1,15 @@
+body{
+   width: 100%;
+}
+.auth-header{
+   height: 82px;
+   opacity: 1;
+   background-color: black;
+}
+#CoachTech_White1{
+    width: 370px;
+    height: 36px;
+    margin-top: 22px;
+    margin-left: 25px;
+    opacity: 1;
+}

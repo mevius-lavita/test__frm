@@ -1,0 +1,46 @@
+.auth-header{
+    display: flex;
+    justify-content: space-between;
+}
+.toppage-header-search{
+    padding: 30px;
+}
+.toppage-header-search input{
+    width: 400px;
+    height: 30px;
+}
+.toppage-header-nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    width: 390px;
+}
+.list_white{
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    border: none;
+}
+.list_black{
+    background-color: white;
+    text-decoration: none;
+    padding: 5px 9px;
+    color: black;
+    border-radius: 4px;
+}
+.list_item{
+    border-bottom: 2px solid black;
+}
+.toppage-list{
+    display: flex;
+    margin-top: 50px;
+    margin-left: 100px;
+}
+.toppage-list li{
+    list-style: none;
+    margin-right: 50px;
+}
+.toppage-list a{
+    text-decoration: none;
+    color: black;
+}

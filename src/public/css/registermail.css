@@ -1,0 +1,31 @@
+main{
+    text-align: center;
+    margin-top: 200px;
+    margin-bottom: 300px;
+}
+.text_massage{
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+}
+.sumbit__button{
+    padding-top: 40px;
+}
+button{
+    width: 257px;
+    height: 69px;
+    border-radius: 10px;
+    border-width: 1px;
+    font-size: 20px;
+}
+.restart_link{
+    padding-top: 50px;
+}
+.restart_link a{
+    text-decoration: none;
+    color: #0073CC;
+;
+}
