@@ -1,0 +1,62 @@
+テーブル名,カラム名,データ型,NULL許可,キー,説明
+users,id,BIGINT,NOT NULL,PK,ユーザーID
+users,name,VARCHAR(100),NOT NULL,,ユーザー名
+users,email,VARCHAR(255),NOT NULL,UNIQUE,メールアドレス
+users,password,VARCHAR(100),NOT NULL,,パスワード
+users,email_verified_at,TIMESTAMP,NULL,,メール認証日時
+users,created_at,TIMESTAMP,NOT NULL,,作成日時
+users,updated_at,TIMESTAMP,NOT NULL,,更新日時
+profiles,id,BIGINT,NOT NULL,PK,プロフィールID
+profiles,profile_img,VARCHAR(255),NULL,,プロフィール画像
+profiles,nickname,VARCHAR(255),NULL,,ニックネーム
+profiles,address_number,VARCHAR(8),NULL,,郵便番号
+profiles,address,VARCHAR(255),NULL,,住所
+profiles,building,VARCHAR(255),NULL,,建物名
+profiles,user_id,BIGINT,NOT NULL,FK → users.id,ユーザーID
+profiles,created_at,TIMESTAMP,NOT NULL,,作成日時
+profiles,updated_at,TIMESTAMP,NOT NULL,,更新日時
+categories,id,BIGINT,NOT NULL,PK,カテゴリID
+categories,name,VARCHAR(255),NOT NULL,,カテゴリ名
+categories,created_at,TIMESTAMP,NOT NULL,,作成日時
+categories,updated_at,TIMESTAMP,NOT NULL,,更新日時
+items,id,BIGINT,NOT NULL,PK,商品ID
+items,item_img,BINARY,NOT NULL,,商品画像
+items,item_name,VARCHAR(255),NOT NULL,,商品名
+items,brand_name,VARCHAR(255),NULL,,ブランド名
+items,item_detail,VARCHAR(255),NOT NULL,,商品説明
+items,price,VARCHAR(255),NOT NULL,,価格
+items,category_id,BIGINT,NULL,FK → categories.id,カテゴリID
+items,condition,VARCHAR(255),NULL,,商品の状態
+items,profile_id,BIGINT,NULL,FK → profiles.id,出品者プロフィールID
+items,created_at,TIMESTAMP,NOT NULL,,作成日時
+items,updated_at,TIMESTAMP,NOT NULL,,更新日時
+comments,id,BIGINT,NOT NULL,PK,コメントID
+comments,comment_detail,VARCHAR(255),NOT NULL,,コメント内容
+comments,profile_id,BIGINT,NOT NULL,FK → profiles.id,プロフィールID
+comments,item_id,BIGINT,NOT NULL,FK → items.id,商品ID
+comments,created_at,TIMESTAMP,NOT NULL,,作成日時
+comments,updated_at,TIMESTAMP,NOT NULL,,更新日時
+item_likes,id,BIGINT,NOT NULL,PK,いいねID
+item_likes,item_id,BIGINT,NOT NULL,FK → items.id,商品ID
+item_likes,profile_id,BIGINT,NOT NULL,FK → profiles.id,プロフィールID
+item_likes,created_at,TIMESTAMP,NOT NULL,,作成日時
+item_likes,updated_at,TIMESTAMP,NOT NULL,,更新日時
+item_likes,,,,,UNIQUE(item_id, profile_id)
+purchased_items,id,BIGINT,NOT NULL,PK,購入ID
+purchased_items,profile_id,BIGINT,NOT NULL,FK → profiles.id,購入者プロフィールID
+purchased_items,item_id,BIGINT,NOT NULL,FK → items.id,商品ID
+purchased_items,payment_method,VARCHAR(255),NULL,,支払い方法
+purchased_items,created_at,TIMESTAMP,NOT NULL,,作成日時
+purchased_items,updated_at,TIMESTAMP,NOT NULL,,更新日時
+purchased_items,,,,,UNIQUE(profile_id, item_id)
+listed_items,id,BIGINT,NOT NULL,PK,出品ID
+listed_items,profile_id,BIGINT,NOT NULL,FK → profiles.id,出品者プロフィールID
+listed_items,item_id,BIGINT,NOT NULL,FK → items.id,商品ID
+listed_items,created_at,TIMESTAMP,NOT NULL,,作成日時
+listed_items,updated_at,TIMESTAMP,NOT NULL,,更新日時
+listed_items,,,,,UNIQUE(profile_id, item_id)
+item_category,id,BIGINT,NOT NULL,PK,商品カテゴリID
+item_category,item_id,BIGINT,NOT NULL,FK → items.id,商品ID
+item_category,category_id,BIGINT,NOT NULL,FK → categories.id,カテゴリID
+item_category,created_at,TIMESTAMP,NOT NULL,,作成日時
+item_category,updated_at,TIMESTAMP,NOT NULL,,更新日時

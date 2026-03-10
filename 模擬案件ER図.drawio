@@ -1,0 +1,65 @@
+<mxfile host="65bd71144e">
+    <diagram id="er-diagram" name="ER図">
+        <mxGraphModel dx="836" dy="483" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="850" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="users" value="&lt;b&gt;users&lt;/b&gt;&lt;hr&gt;PK id: BIGINT&lt;br&gt;name: VARCHAR(100)&lt;br&gt;email: VARCHAR(255) UK&lt;br&gt;password: VARCHAR(100)&lt;br&gt;email_verified_at: TIMESTAMP&lt;br&gt;created_at: TIMESTAMP&lt;br&gt;updated_at: TIMESTAMP" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="40" width="240" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="profiles" value="&lt;b&gt;profiles&lt;/b&gt;&lt;hr&gt;PK id: BIGINT&lt;br&gt;profile_img: VARCHAR(255)&lt;br&gt;nickname: VARCHAR(255)&lt;br&gt;address_number: VARCHAR(8)&lt;br&gt;address: VARCHAR(255)&lt;br&gt;building: VARCHAR(255)&lt;br&gt;FK user_id: BIGINT&lt;br&gt;created_at: TIMESTAMP&lt;br&gt;updated_at: TIMESTAMP" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="40" width="240" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="categories" value="&lt;b&gt;categories&lt;/b&gt;&lt;hr&gt;PK id: BIGINT&lt;br&gt;name: VARCHAR(255)&lt;br&gt;created_at: TIMESTAMP&lt;br&gt;updated_at: TIMESTAMP" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+                    <mxGeometry x="720" y="40" width="240" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="items" value="&lt;b&gt;items&lt;/b&gt;&lt;hr&gt;PK id: BIGINT&lt;br&gt;item_img: BINARY&lt;br&gt;item_name: VARCHAR(255)&lt;br&gt;brand_name: VARCHAR(255)&lt;br&gt;item_detail: VARCHAR(255)&lt;br&gt;price: VARCHAR(255)&lt;br&gt;FK category_id: BIGINT&lt;br&gt;condition: VARCHAR(255)&lt;br&gt;FK profile_id: BIGINT&lt;br&gt;created_at: TIMESTAMP&lt;br&gt;updated_at: TIMESTAMP" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="280" width="240" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="comments" value="&lt;b&gt;comments&lt;/b&gt;&lt;hr&gt;PK id: BIGINT&lt;br&gt;comment_detail: VARCHAR(255)&lt;br&gt;FK profile_id: BIGINT&lt;br&gt;FK item_id: BIGINT&lt;br&gt;created_at: TIMESTAMP&lt;br&gt;updated_at: TIMESTAMP" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="280" width="240" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="item_likes" value="&lt;b&gt;item_likes&lt;/b&gt;&lt;hr&gt;PK id: BIGINT&lt;br&gt;FK item_id: BIGINT&lt;br&gt;FK profile_id: BIGINT&lt;br&gt;created_at: TIMESTAMP&lt;br&gt;updated_at: TIMESTAMP&lt;br&gt;UNIQUE(item_id, profile_id)" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="450" width="240" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="purchased_items" value="&lt;b&gt;purchased_items&lt;/b&gt;&lt;hr&gt;PK id: BIGINT&lt;br&gt;FK profile_id: BIGINT&lt;br&gt;FK item_id: BIGINT&lt;br&gt;payment_method: VARCHAR(255)&lt;br&gt;created_at: TIMESTAMP&lt;br&gt;updated_at: TIMESTAMP&lt;br&gt;UNIQUE(profile_id, item_id)" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="540" width="240" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="listed_items" value="&lt;b&gt;listed_items&lt;/b&gt;&lt;hr&gt;PK id: BIGINT&lt;br&gt;FK profile_id: BIGINT&lt;br&gt;FK item_id: BIGINT&lt;br&gt;created_at: TIMESTAMP&lt;br&gt;updated_at: TIMESTAMP&lt;br&gt;UNIQUE(profile_id, item_id)" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="720" y="280" width="240" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="item_category" value="&lt;b&gt;item_category&lt;/b&gt;&lt;hr&gt;PK id: BIGINT&lt;br&gt;FK item_id: BIGINT&lt;br&gt;FK category_id: BIGINT&lt;br&gt;created_at: TIMESTAMP&lt;br&gt;updated_at: TIMESTAMP" style="rounded=0;whiteSpace=wrap;html=1;align=left;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
+                    <mxGeometry x="720" y="450" width="240" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="rel1" value="" style="endArrow=ERone;startArrow=ERone;endFill=0;startFill=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="users" target="profiles" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="rel2" value="" style="endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="profiles" target="items" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="rel3" value="" style="endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="items" target="comments" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="rel4" value="" style="endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" parent="1" source="items" target="item_likes" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="rel5" value="" style="endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="items" target="purchased_items" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="rel6" value="" style="endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="items" target="listed_items" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="rel7" value="" style="endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="categories" target="item_category" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1160" y="340"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="rel8" value="" style="endArrow=ERmany;startArrow=ERone;endFill=0;startFill=0;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="items" target="item_category" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

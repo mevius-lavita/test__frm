@@ -10,7 +10,10 @@ class Profile extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'address_id',
+        'profile_img',
+        'address_number',
+        'address',
+        'building',
     ];
 
     public function user()
@@ -18,8 +21,23 @@ class Profile extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function address()
+    public function comments()
     {
-        return $this->belongsTo(Address::class);
+        return $this->hasMany(Comment::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(ItemLike::class);
+    }
+
+    public function purchasedItems()
+    {
+        return $this->hasMany(PurchasedItem::class);
+    }
+
+    public function listedItems()
+    {
+        return $this->hasMany(ListedItem::class);
     }
 }

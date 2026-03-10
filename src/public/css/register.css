@@ -1,69 +1,141 @@
-.auth-content{
-    width: 800px;
-    height: 620px;
-    margin-top:96px;
-    margin-left: 416px;
+:root {
+    --color-border: #5f5f5f;
+    --color-button: #ff5555;
+    --color-link: #0073cc;
+    --color-error: #ff5555;
 }
-.auth-content h1{
-    width: 925px;
-    height: 47.5px;
-    margin-left: 157px;
-    font-weight: 700;
-    font-style: Bold;
-    font-size: 36px;
-    line-height: 100%;
-    letter-spacing: 0%;
-    text-align: center;
-}
-.auth-content p{
-    font-weight: 700;
-    font-style: Bold;
-    font-size: 24px;
-    line-height: 100%;
-    letter-spacing: 0%;
 
+/* Header */
+.auth-header {
+    background-color: #000;
+    height: 82px;
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
 }
-.auth-content input{
-    width: 1200px;
-    height: 40px;
-    border-radius: 4px;
-    border-width: 1px;
+
+.header-logo {
+    height: 36px;
+    width: auto;
 }
-.register__link {
-    width: 1200px;
-    height: 65px;
-    margin-left: 417px;
-    border-radius: 5px;
-    background: #FF5555;
-    text-align: center;
-    display: inline-block;
-    margin: 0 auto;
-    margin-top: 30px;
-    
+
+/* Main Layout */
+body {
+    background-color: #fff;
 }
-.register__link button{
-    font-family: Inter;
+
+main {
+    width: 100%;
+    min-height: calc(100vh - 82px);
+}
+
+.register-container {
+    position: relative;
+    width: min(680px, calc(100% - 80px));
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 178px;
+}
+
+/* Title */
+.register-container>h1 {
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    font-size: 36px;
     font-weight: 700;
-    font-size: 26px;
-    text-decoration: none;
-    color: white;
-    display: inline-block;
-    margin-top: 10px;
-    border: none;
-    background: #FF5555;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #000;
 }
-.login_buttun{
-    width: 1200px;
-    height: 65px;
-    margin-left: 417px;
+
+/* Form */
+.auth-content {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 40px;
+}
+
+.form-group label {
+    display: block;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
     margin-bottom: 10px;
-    text-align: center;
-    display: inline-block;
+    color: #000;
 }
-.login_buttun a{
-    font-family: Inter;
+
+.form-group input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 12px 15px;
+    font-size: 16px;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--color-button);
+    box-shadow: 0 0 0 3px rgba(255, 85, 85, 0.1);
+}
+
+/* Error Message */
+.error-message {
+    color: var(--color-error) !important;
+    font-size: 12px !important;
+    font-weight: 500;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+/* Submit Button */
+.submit-button {
+    width: 100%;
+    height: 55px;
+    background-color: var(--color-button);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    font-size: 26px;
     font-weight: 700;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #ff4444;
+}
+
+.submit-button:active {
+    background-color: #e64545;
+}
+
+/* Login Link */
+.login-link {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.login-link a {
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
     font-size: 20px;
+    font-weight: 400;
     text-decoration: none;
-    color: #0073CC;
+    color: var(--color-link);
+    transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+    color: #005aa5;
+}
+
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .register-container {
+        margin-top: 170px;
+    }
 }

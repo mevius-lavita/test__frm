@@ -13,40 +13,48 @@
 
 <body>
     <header class="auth-header">
-        <img src="{{ asset('img/COACHTECHヘッダーロゴ.png') }}" alt="" id="CoachTech_White1">
+        <img src="{{ asset('img/COACHTECHヘッダーロゴ.png') }}" alt="COACHTECH" class="header-logo">
     </header>
     <main>
-       <form class="auth-content" action="/register" method="post">
-    @csrf
-    <h1>会員登録</h1>
+        <div class="register-container">
+            <h1>会員登録</h1>
+            <form class="auth-content" action="/register" method="post" novalidate>
+                @csrf
 
-    <p>ユーザー名</p>
-    <input type="text" name="name" value="{{ old('name') }}">
-    @error('name')
-        <p style="color:red; font-size:12px;">{{ $message }}</p>
-    @enderror
+                <div class="form-group">
+                    <label for="name">ユーザー名</label>
+                    <input type="text" id="name" name="name" value="{{ old('name') }}">
+                    @error('name')
+                    <p class="error-message">{{ $message }}</p>
+                    @enderror
+                </div>
 
-    <p>メールアドレス</p>
-    <input type="email" name="email" value="{{ old('email') }}">
-    @error('email')
-        <p style="color:red; font-size:12px;">{{ $message }}</p>
-    @enderror
+                <div class="form-group">
+                    <label for="email">メールアドレス</label>
+                    <input type="email" id="email" name="email" value="{{ old('email') }}">
+                    @error('email')
+                    <p class="error-message">{{ $message }}</p>
+                    @enderror
+                </div>
 
-    <p>パスワード</p>
-    <input type="password" name="password">
-    @error('password')
-        <p style="color:red; font-size:12px;">{{ $message }}</p>
-    @enderror
+                <div class="form-group">
+                    <label for="password">パスワード</label>
+                    <input type="password" id="password" name="password">
+                    @error('password')
+                    <p class="error-message">{{ $message }}</p>
+                    @enderror
+                </div>
 
-    <p>確認用パスワード</p>
-    <input type="password" name="password_confirmation">
+                <div class="form-group">
+                    <label for="password_confirmation">確認用パスワード</label>
+                    <input type="password" id="password_confirmation" name="password_confirmation">
+                </div>
 
-    <div class="register__link">
-        <button type="submit">登録する</button>
-    </div>
-</form>
-        <div class="login_buttun">
-            <a href="/login">ログインはこちらから</a>
+                <button type="submit" class="submit-button">登録する</button>
+            </form>
+            <div class="login-link">
+                <a href="/login">ログインはこちら</a>
+            </div>
         </div>
     </main>
 </body>

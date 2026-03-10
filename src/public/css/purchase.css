@@ -1,0 +1,310 @@
+.purchase-page {
+    display: flex;
+    gap: 80px;
+    margin: 60px 80px;
+    margin-bottom: 150px;
+    max-width: 1400px;
+}
+
+/* === Left Section (Product Info, Payment, Address) === */
+.purchase-left {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Product Section */
+.product-section {
+    padding-bottom: 40px;
+    border-bottom: 1px solid #000;
+}
+
+.product-item {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.product-image {
+    width: 177px;
+    height: 177px;
+    min-width: 177px;
+    background: #d9d9d9;
+    border-radius: 4px;
+    object-fit: cover;
+    display: block;
+}
+
+.product-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.product-details h2 {
+    font-family: Inter, "Noto Sans JP", sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1;
+    margin: 0 0 20px 0;
+    color: #000;
+}
+
+.price-display {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.price-currency {
+    font-family: Inter, "Noto Sans JP", sans-serif;
+    font-size: 27px;
+    font-weight: 400;
+}
+
+.price-amount {
+    font-family: Inter, "Noto Sans JP", sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+}
+
+/* Payment Section */
+.payment-section {
+    padding: 40px 0;
+    border-bottom: 1px solid #000;
+}
+
+.payment-section h3 {
+    font-family: Inter, "Noto Sans JP", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1;
+    margin: 0 0 30px 0;
+    color: #000;
+}
+
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 265px;
+}
+
+.select-wrapper select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 31px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.select-display {
+    width: 100%;
+    height: 31px;
+    padding: 8px 12px;
+    font-family: Inter, "Noto Sans JP", sans-serif;
+    font-size: 16px;
+    color: #5f5f5f;
+    border: 1px solid #5f5f5f;
+    border-radius: 4px;
+    background: white;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    z-index: 5;
+}
+
+.select-display::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    width: 10px;
+    height: 10px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpolygon points='5,6 0,0 10,0' fill='%235f5f5f'/%3E%3C/svg%3E") no-repeat center;
+    background-size: contain;
+    pointer-events: none;
+}
+
+/* Payment Dropdown */
+.payment-dropdown {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 100%;
+    background: #636769;
+    border: 1.5px solid #b1b1b1;
+    border-radius: 5px;
+    display: none;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.payment-dropdown.active {
+    display: block;
+}
+
+.payment-option {
+    height: 30px;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    color: #eaeaea;
+    font-family: Inter, "Noto Sans JP", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.payment-option:hover {
+    background: #5599eb;
+}
+
+.payment-option.default-active {
+    background: #5599eb;
+    color: #eaeaea;
+}
+
+.payment-option.selected {
+    background: #5599eb;
+    color: #eaeaea;
+}
+
+/* Address Section */
+.address-section {
+    padding: 40px 0;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
+.address-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.address-section h3 {
+    font-family: Inter, "Noto Sans JP", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1;
+    margin: 0;
+    color: #000;
+}
+
+.change-link {
+    font-family: Inter, "Noto Sans JP", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #0073cc;
+    text-decoration: none;
+}
+
+.change-link:hover {
+    text-decoration: underline;
+}
+
+.address-postcode {
+    font-family: Inter, "Noto Sans JP", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.4;
+    margin: 0 0 10px 0;
+    color: #000;
+}
+
+.address-text {
+    font-family: Inter, "Noto Sans JP", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.4;
+    margin: 0;
+    color: #000;
+}
+
+/* === Right Section (Confirm Surface & Button) === */
+.purchase-right {
+    width: 440px;
+    flex-shrink: 0;
+}
+
+.confirm-surface {
+    border: 1px solid #000;
+    border-radius: 0;
+    margin-bottom: 30px;
+}
+
+.confirm-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    border-bottom: 1px solid #000;
+    min-height: 115px;
+}
+
+.confirm-row:last-child {
+    border-bottom: none;
+}
+
+.confirm-label {
+    font-family: Inter, "Noto Sans JP", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #000;
+    padding: 0 20px;
+    flex: 0 0 50%;
+    text-align: center;
+}
+
+.confirm-value {
+    font-family: Inter, "Noto Sans JP", sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    color: #000;
+    padding: 0 20px;
+    flex: 0 0 50%;
+    text-align: center;
+}
+
+.purchase-button {
+    width: 100%;
+    height: 60px;
+    background: #ff5555;
+    color: white;
+    font-family: Inter, "Noto Sans JP", sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.purchase-button:hover {
+    background: #ff4444;
+}
+
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .purchase-page {
+        margin: 60px 5%;
+        gap: 60px;
+    }
+
+    .purchase-left {
+        flex: 0 0 50%;
+    }
+
+    .purchase-right {
+        flex: 0 0 50%;
+        width: 100%;
+    }
+
+    .confirm-surface,
+    .purchase-button {
+        width: 100%;
+    }
+}

@@ -3,58 +3,69 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\ProfileRequest;
 use App\Models\Profile;
-use App\Models\Address;
+use App\Models\Item;
+use App\Models\PurchasedItem;
+use App\Http\Requests\Auth\ProfileRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
+    public function show(Request $request)
+    {
+        $user = auth()->user();
+        $profile = $user->profile ?? Profile::create(['user_id' => $user->id, 'nickname' => $user->name]);
+        $page = $request->page;
+
+        if ($page === 'buy') {
+            $myPurchasedItemIds = $profile->purchasedItems()->pluck('item_id')->all();
+            $myItems = Item::whereIn('id', $myPurchasedItemIds)->get();
+        } elseif ($page === 'sell') {
+            $myListedItemIds = $profile->listedItems()->pluck('item_id')->all();
+            $myItems = Item::whereIn('id', $myListedItemIds)->get();
+        } else {
+            $myListedItemIds = $profile->listedItems()->pluck('item_id')->all();
+            $myItems = Item::whereIn('id', $myListedItemIds)->get();
+        }
+
+        $soldItemIds = PurchasedItem::pluck('item_id')->all();
+
+        return view('mypage.mypage', compact('myItems', 'soldItemIds', 'page', 'user', 'profile'));
+    }
 
     public function edit()
     {
         $user = auth()->user();
         $profile = $user->profile;
-        $address = $profile?->address;
 
-        return view('mypage.profileedit', compact('user', 'address'));
+        return view('mypage.profileedit', compact('user', 'profile'));
     }
 
-    public function update(Request $request)
+    public function update(ProfileRequest $request)
     {
-        $request->validate([
-            'name' => 'required|max:20',
-            'address_number' => 'required|regex:/^\d{3}-\d{4}$/',
-            'address' => 'required',
-            'building' => 'nullable',
-        ]);
-
         $user = auth()->user();
 
         DB::transaction(function () use ($request, $user) {
+            $user->update(['name' => $request->name]);
 
-            // ✅ users 更新
-            $user->update([
-                'name' => $request->name,
-            ]);
-
-            // ✅ profileを取得または作成
             $profile = Profile::firstOrCreate(['user_id' => $user->id]);
 
-            // ✅ addressを取得または作成
-            $address = Address::updateOrCreate(
-                ['id' => $profile->address_id],
-                [
-                    'address_number' => $request->address_number,
-                    'address' => $request->address,
-                    'building' => $request->building ?? '',
-                ]
-            );
+            if ($request->hasFile('profile_img')) {
+                if ($profile->profile_img && Storage::disk('public')->exists($profile->profile_img)) {
+                    Storage::disk('public')->delete($profile->profile_img);
+                }
+                $path = $request->file('profile_img')->store('profiles', 'public');
+                $profile->update(['profile_img' => $path]);
+            }
 
-            // ✅ profileのaddress_idを更新
-            $profile->update(['address_id' => $address->id]);
+            $profile->update([
+                'address_number' => $request->address_number,
+                'address' => $request->address,
+                'building' => $request->building ?? '',
+            ]);
         });
 
-        return redirect()->route('profile.edit')->with('success', 'プロフィール更新完了');
+        return redirect('/')->with('success', 'プロフィール更新完了');
     }
 }

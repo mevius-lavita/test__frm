@@ -1,0 +1,101 @@
+erDiagram
+    users ||--o| profiles : "has"
+    profiles ||--o{ items : "lists"
+    profiles ||--o{ comments : "posts"
+    profiles ||--o{ item_likes : "likes"
+    profiles ||--o{ purchased_items : "purchases"
+    profiles ||--o{ listed_items : "exhibits"
+    
+    categories ||--o{ items : "categorizes"
+    categories ||--o{ item_category : "belongs_to"
+    
+    items ||--o{ comments : "has"
+    items ||--o{ item_likes : "liked_by"
+    items ||--o{ purchased_items : "purchased_as"
+    items ||--o{ listed_items : "listed_as"
+    items ||--o{ item_category : "has"
+    
+    users {
+        bigint id PK
+        string name
+        string email UK
+        string password
+        timestamp email_verified_at
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    profiles {
+        bigint id PK
+        string profile_img
+        string nickname
+        string address_number
+        string address
+        string building
+        bigint user_id FK
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    categories {
+        bigint id PK
+        string name
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    items {
+        bigint id PK
+        binary item_img
+        string item_name
+        string brand_name
+        string item_detail
+        string price
+        bigint category_id FK
+        string condition
+        bigint profile_id FK
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    comments {
+        bigint id PK
+        string comment_detail
+        bigint profile_id FK
+        bigint item_id FK
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    item_likes {
+        bigint id PK
+        bigint item_id FK
+        bigint profile_id FK
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    purchased_items {
+        bigint id PK
+        bigint profile_id FK
+        bigint item_id FK
+        string payment_method
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    listed_items {
+        bigint id PK
+        bigint profile_id FK
+        bigint item_id FK
+        timestamp created_at
+        timestamp updated_at
+    }
+    
+    item_category {
+        bigint id PK
+        bigint item_id FK
+        bigint category_id FK
+        timestamp created_at
+        timestamp updated_at
+    }

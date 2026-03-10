@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,28 +11,78 @@
     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
     <title>プロフィール画面</title>
 </head>
+
 <body>
     <header class="auth-header">
         <img src="{{ asset('img/COACHTECHヘッダーロゴ.png') }}" alt="" id="CoachTech_White1">
-        <div class="toppage-header-search">
-            <input type="text">
-        </div>
+        <form action="/search" method="get" class="toppage-header-search">
+            @csrf
+            <input type="text" name="keyword" value="{{ old('keyword') }}" placeholder="なにをお探しですか？">
+            <input type="hidden" name="type" value="{{ request('type') }}">
+        </form>
         <nav class="toppage-header-nav">
-            <li><a href="" class="list_white">ログアウト</a></li>
-            <li><a href=""class="list_white">マイページ</a></li>
-            <li><a href="" class="list_black">出品</a></li>
+            @if (Auth::check())
+            <li>
+                <form action="/logout" method="post">
+                    @csrf
+                    <button class="list_white">ログアウト</button>
+                </form>
+            </li>
+            @endif
+            @if(!Auth::check())
+            <li>
+                <a href="/login" class="list_white">ログイン</a>
+            </li>
+            @endif
+            <li><a href="/mypage" class="list_white">マイページ</a></li>
+            <li><a href="/sell" class="list_black">出品</a></li>
         </nav>
     </header>
-     <main>
-        <div class="user-info">
-            <div class="user-img"></div>
-            <h2>ユーザー名  </h2>
-            <a>プロフィールを編集</a>
-        </div>
-        <div class="list_item">
+
+    <main class="mypage-main">
+        <section class="user-info">
+            @if (!empty($profile?->profile_img))
+            <img class="user-img" src="{{ Storage::url($profile->profile_img) }}" alt="プロフィール画像">
+            @else
+            <div class="user-img-placeholder"></div>
+            @endif
+            <h2>{{ $user->name }}</h2>
+            <a href="{{ route('profile.edit') }}" class="edit-profile-btn">プロフィールを編集</a>
+        </section>
+
+        <section class="list-section">
             <nav class="toppage-list">
-                <li><a href="">出品した商品</a></li>
-                <li><a href="">購入した商品</a></li>
+                <li>
+                    <a href="{{ route('mypage', ['page' => 'sell']) }}"
+                        class="{{ request('page') === 'sell' || !request('page') ? 'active-tab' : '' }}">
+                        出品した商品
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('mypage', ['page' => 'buy']) }}"
+                        class="{{ request('page') === 'buy' ? 'active-tab' : '' }}">
+                        購入した商品
+                    </a>
+                </li>
             </nav>
-        </div>
+        </section>
+
+        <section class="products-grid">
+            @forelse ($myItems as $myItem)
+            <article class="product-card">
+                <div class="image-wrap">
+                    <img src="{{ Storage::url($myItem->item_img) }}" alt="商品画像" class="product-image">
+                    @if (in_array($myItem->id, $soldItemIds))
+                    <div class="sold-label">SOLD</div>
+                    @endif
+                </div>
+                <h3 class="product-name">{{ $myItem->item_name }}</h3>
+            </article>
+            @empty
+            <p class="empty-text">商品がありません</p>
+            @endforelse
+        </section>
     </main>
+</body>
+
+</html>

@@ -1,31 +1,118 @@
-main{
-    text-align: center;
-    margin-top: 200px;
-    margin-bottom: 300px;
+:root {
+    --color-border: #000;
+    --color-button-bg: #d9d9d9;
+    --color-link: #0073cc;
 }
-.text_massage{
-    font-weight: 700;
-    font-style: Bold;
+
+/* Header */
+.auth-header {
+    background-color: #000;
+    height: 82px;
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+}
+
+.header-logo {
+    height: 36px;
+    width: auto;
+}
+
+/* Main Layout */
+body {
+    background-color: #fff;
+}
+
+main {
+    width: 100%;
+    min-height: calc(100vh - 82px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 220px;
+    box-sizing: border-box;
+}
+
+.email-auth-container {
+    text-align: center;
+    max-width: 600px;
+}
+
+/* Message Box */
+.message-box {
+    margin-bottom: 120px;
+}
+
+.message-box p {
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
     font-size: 24px;
-    line-height: 100%;
-    letter-spacing: 0%;
-    text-align: center;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #000;
+    margin: 0;
+    white-space: nowrap;
 }
-.sumbit__button{
-    padding-top: 40px;
-}
-button{
+
+/* Auth Button */
+.auth-button-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 257px;
     height: 69px;
+    background-color: var(--color-button-bg);
+    border: 1px solid var(--color-border);
     border-radius: 10px;
-    border-width: 1px;
-    font-size: 20px;
-}
-.restart_link{
-    padding-top: 50px;
-}
-.restart_link a{
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #000;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
     text-decoration: none;
-    color: #0073CC;
-;
+}
+
+.auth-button-link:hover {
+    background-color: #e8e8e8;
+}
+
+.auth-button-link:active {
+    background-color: #ccc;
+}
+
+/* Resend Link */
+.resend-link {
+    margin-top: 60px;
+}
+
+.resend-link form {
+    margin: 0;
+}
+
+.resend-link button {
+    background: none;
+    border: none;
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--color-link);
+    cursor: pointer;
+    text-decoration: none;
+    padding: 0;
+    transition: color 0.3s ease;
+}
+
+.resend-link button:hover {
+    color: #005aa5;
+    text-decoration: underline;
+}
+
+@media (min-width: 1400px) and (max-width: 1540px) {
+    main {
+        padding-top: 200px;
+    }
+
+    .email-auth-container {
+        width: min(680px, calc(100% - 80px));
+    }
 }

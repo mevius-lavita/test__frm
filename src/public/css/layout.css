@@ -1,15 +1,27 @@
-body{
-   width: 100%;
+body {
+    width: 100%;
+    margin: 0;
 }
-.auth-header{
-   height: 82px;
-   opacity: 1;
-   background-color: black;
+
+.auth-header {
+    height: 82px;
+    opacity: 1;
+    background-color: black;
 }
-#CoachTech_White1{
+
+#CoachTech_White1,
+.header-logo {
     width: 370px;
     height: 36px;
     margin-top: 22px;
     margin-left: 25px;
     opacity: 1;
+}
+
+@media (min-width: 1400px) and (max-width: 1540px) {
+    main {
+        max-width: 1540px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

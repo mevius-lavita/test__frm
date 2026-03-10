@@ -39,6 +39,15 @@ class LoginRequest extends FormRequest
             'password.required' => 'パスワードを入力してください',
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'email' => 'メールアドレス',
+            'password' => 'パスワード',
+        ];
+    }
+
     public function authenticate()
     {
         if (! Auth::attempt($this->only('email', 'password'))) {

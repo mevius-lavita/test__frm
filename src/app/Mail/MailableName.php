@@ -11,7 +11,8 @@ use Illuminate\Mail\Mailables\Envelope;
 
 class MailableName extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * Create a new message instance.
@@ -33,10 +34,10 @@ class MailableName extends Mailable
         return $this->view('view.name');
     }
     public function envelope()
-{
-   return new Envelope(
-       from: new Address('サンプル@サンプル.com', 'テスト送信者'),
-       subject: 'テストメール',
-   );
-}
+    {
+        return new Envelope(
+            from: new Address('サンプル@サンプル.com', 'テスト送信者'),
+            subject: 'テストメール',
+        );
+    }
 }
