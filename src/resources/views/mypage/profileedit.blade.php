@@ -68,7 +68,8 @@
 
             <div class="form-group">
                 <label for="name">ユーザー名</label>
-                <input id="name" type="text" name="name" value="{{ old('name', $user->name ?? '') }}" required>
+                <input id="name" type="text" name="nickname"
+                    value="{{ old('nickname', $profile->nickname ?? $user->name ?? '') }}" required>
             </div>
 
             <div class="form-group">

@@ -47,7 +47,7 @@ class ProfileController extends Controller
         $user = auth()->user();
 
         DB::transaction(function () use ($request, $user) {
-            $user->update(['name' => $request->name]);
+            $user->update(['name' => $request->nickname]);
 
             $profile = Profile::firstOrCreate(['user_id' => $user->id]);
 
@@ -60,6 +60,7 @@ class ProfileController extends Controller
             }
 
             $profile->update([
+                'nickname' => $request->nickname,
                 'address_number' => $request->address_number,
                 'address' => $request->address,
                 'building' => $request->building ?? '',

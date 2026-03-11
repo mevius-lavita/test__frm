@@ -26,9 +26,26 @@ class ProfileRequest extends FormRequest
         return [
             'profile_img' => ['nullable', 'image', 'mimes:jpeg,png'],
             'nickname' => ['required', 'string', 'max:20'],
-            'address_number' => ['required', 'string', 'size:8', 'regex:/^\d{3}-\d{4}$/'],
+            'address_number' => ['required', 'string', 'regex:/^\d{3}-\d{4}$/'],
             'address' => ['required', 'string'],
             'building' => ['nullable', 'string'],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $addressNumber = $this->input('address_number');
+
+        if (is_string($addressNumber)) {
+            $digitsOnly = preg_replace('/\D/u', '', $addressNumber);
+
+            if (strlen($digitsOnly) === 7) {
+                $addressNumber = substr($digitsOnly, 0, 3) . '-' . substr($digitsOnly, 3);
+            }
+
+            $this->merge([
+                'address_number' => $addressNumber,
+            ]);
+        }
     }
 }

@@ -60,7 +60,7 @@ class EmailVerificationTest extends TestCase
         // 3. メール認証サイトを表示する
         // メール認証サイトに遷移する
         $response->assertSee('認証はこちらから');
-        $response->assertSee('href="https://mailtrap.io/inboxes"', false);
+        $response->assertSee('href="http://localhost:8025"', false);
     }
 
     /**
