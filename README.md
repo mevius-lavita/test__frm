@@ -35,11 +35,13 @@ DB_PASSWORD=root
 ### コンテナのビルドと起動・依存関係のインストール・データベース初期化とシーディング
 docker-compose up -d
 
-docker-compose exec php composer install
+docker-compose exec php
+
+composer install
 
 php artisan key:generate
 
-docker-compose exec php php artisan migrate
+php artisan migrate
 
 docker-compose exec php php artisan db:seed --force
 ### mysqlが立ち上がらない場合
