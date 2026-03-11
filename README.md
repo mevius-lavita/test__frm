@@ -3,13 +3,13 @@
 
 ## 環境構築：
 
-git clone <git@github.com:mevius-lavita/test__frm.gitl>
-cd test__frm
-cp src/.env.example src/.env
+###git clone <git@github.com:mevius-lavita/test__frm.gitl>
+###cd test__frm
+###cp src/.env.example src/.env
 
 
-### テスト用の .env.testing ファイルの設定（必要に応じて）
-cp src/.env.testing.example src/.env.testing 2>/dev/null || true
+## テスト用の .env.testing ファイルの設定（必要に応じて）
+###cp src/.env.testing.example src/.env.testing 2>/dev/null || true
 
 
 **重要**: `src/.env` ファイルで以下の設定を確認・修正：
