@@ -7,11 +7,6 @@
 ###cd test__frm
 ###cp src/.env.example src/.env
 
-
-## テスト用の .env.testing ファイルの設定（必要に応じて）
-###cp src/.env.testing.example src/.env.testing 2>/dev/null || true
-
-
 **重要**: `src/.env` ファイルで以下の設定を確認・修正：
 
 env
@@ -43,6 +38,9 @@ php artisan key:generate
 docker-compose exec php php artisan migrate
 
 docker-compose exec php php artisan db:seed --force
+
+## テスト用の .env.testing ファイルの設定（必要に応じて）
+###cp src/.env.testing.example src/.env.testing 2>/dev/null || true
 
 
 ## 使用技術
