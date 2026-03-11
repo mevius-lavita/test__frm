@@ -36,15 +36,16 @@ mysql:
 ### コンテナのビルドと起動・依存関係のインストール・データベース初期化とシーディング
 docker-compose up -d
 
-docker-compose exec php bash
-
-composer install
+docker-compose exec php bash composer install
 
 php artisan key:generate
 
 php artisan migrate:refresh
 
 docker-compose exec php php artisan db:seed --force
+
+php artisan storage:link
+
 ### mysqlが立ち上がらない場合
 #### 1) 旧データを退避
 ts=$(date +%Y%m%d_%H%M%S)
