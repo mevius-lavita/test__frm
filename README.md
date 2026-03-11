@@ -27,7 +27,8 @@ DB_DATABASE=laravel_db
 DB_USERNAME=root
 DB_PASSWORD=root
 
-(macの場合)mysql:
+(macの場合)docker-compose.yml 
+mysql:
   image: mysql:8.0.34
 
 
@@ -35,13 +36,13 @@ DB_PASSWORD=root
 ### コンテナのビルドと起動・依存関係のインストール・データベース初期化とシーディング
 docker-compose up -d
 
-docker-compose exec php
+docker-compose exec php bash
 
 composer install
 
 php artisan key:generate
 
-php artisan migrate
+php artisan migrate:refresh
 
 docker-compose exec php php artisan db:seed --force
 ### mysqlが立ち上がらない場合
