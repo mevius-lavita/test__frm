@@ -31,8 +31,23 @@ DB_PASSWORD=root
   image: mysql:8.0.34
 
 
+
 ### コンテナのビルドと起動・依存関係のインストール・データベース初期化とシーディング
 docker-compose up -d
+## 必要に応じて
+# 1) 旧データを退避
+ts=$(date +%Y%m%d_%H%M%S)
+mv docker/mysql/data "docker/mysql/data_backup_${ts}"
+
+# 2) 新規データディレクトリを作成
+mkdir -p docker/mysql/data
+
+# 3) mysql を再起動
+docker-compose up -d mysql
+
+# 4) 起動確認（Up / ready for connections）
+docker-compose ps mysql
+docker-compose logs --no-color --tail=60 mysql
 
 docker-compose exec php composer install
 
