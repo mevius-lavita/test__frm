@@ -27,6 +27,9 @@ DB_DATABASE=laravel_db
 DB_USERNAME=root
 DB_PASSWORD=root
 
+(macの場合)mysql:
+  image: mysql:8.0.34
+
 
 ### コンテナのビルドと起動・依存関係のインストール・データベース初期化とシーディング
 docker-compose up -d
