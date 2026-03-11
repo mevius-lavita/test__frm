@@ -34,7 +34,7 @@ DB_PASSWORD=root
 
 ### コンテナのビルドと起動・依存関係のインストール・データベース初期化とシーディング
 docker-compose up -d
-## 必要に応じて
+### 必要に応じて
 # 1) 旧データを退避
 ts=$(date +%Y%m%d_%H%M%S)
 mv docker/mysql/data "docker/mysql/data_backup_${ts}"
