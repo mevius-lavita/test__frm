@@ -58,6 +58,11 @@ php artisan storage:link
 
 php artisan db:seed --force
 
+
+
+###phpunitテストコマンド
+php artisan test tests/Feature
+
 ### mysqlが立ち上がらない場合
 #### 1) 旧データを退避
 ts=$(date +%Y%m%d_%H%M%S)
