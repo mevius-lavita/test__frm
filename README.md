@@ -10,6 +10,14 @@
 **重要**: `src/.env` ファイルで以下の設定を確認・修正：
 
 env
+
+### DB
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=root
+DB_PASSWORD=root
+
 ### メール設定（MailHog）
 MAIL_MAILER=smtp
 MAIL_HOST=mailhog
@@ -17,7 +25,7 @@ MAIL_PORT=1025
 MAIL_ENCRYPTION=null
 MAIL_FROM_ADDRESS=noreply@example.com
 
-###strip
+### strip
 STRIPE_PUBLIC_KEY=pk_test_51T481dR767t52LNgYhbI11NtbSYS6ma2Ypw4Fe8lsegKeyr4fScSKhctnRguDTGC9P5eDHkK8sGcmZzHNXc1GrdX00wQYRMFNl
 STRIPE_WEBHOOK_SECRET=whsec_0af544fbfd903e12120e8f7f9cbd2e41d2ecceae2e3784dde795756453bbe1ad
 STRIPE_SECRET=sk_test_51T481dR767t52LNgcbQYBqFqHCFOqZWHwkcCx3C9ZbnWfrO3EZCYPFE0DIrao46J55XiR5HQ9sDbTJs7rxB0JMdV00T3UejPFN
@@ -27,11 +35,7 @@ STRIPE_SECRET=sk_test_51T481dR767t52LNgcbQYBqFqHCFOqZWHwkcCx3C9ZbnWfrO3EZCYPFE0D
 APP_NAME=CoachTech
 APP_ENV=local
 APP_DEBUG=true
-DB_HOST=mysql
-DB_PORT=3306
-DB_DATABASE=laravel_db
-DB_USERNAME=root
-DB_PASSWORD=root
+
 
 (macの場合)docker-compose.yml 
 mysql:
@@ -42,15 +46,17 @@ mysql:
 ### コンテナのビルドと起動・依存関係のインストール・データベース初期化とシーディング
 docker-compose up -d
 
-docker-compose exec php bash composer install
+docker-compose exec php bash 
+
+composer install
 
 php artisan key:generate
 
 php artisan migrate:refresh
 
-docker-compose exec php php artisan db:seed --force
-
 php artisan storage:link
+
+php artisan db:seed --force
 
 ### mysqlが立ち上がらない場合
 #### 1) 旧データを退避
